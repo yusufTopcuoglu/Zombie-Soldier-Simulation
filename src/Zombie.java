@@ -31,6 +31,11 @@ public abstract class Zombie extends SimulationObject {
 
     public abstract void handleFollowing(SimulationController controller);
 
+    /**
+     * This function calls the addZombie method of the given SimulationController object with itself as a parameter
+     * May throw NullPointerException if the controller is null
+     * @param controller is the SimulationController object that we call its addZombie method
+     */
     @Override
     public void addItself(SimulationController controller) {
         controller.addZombie(this);

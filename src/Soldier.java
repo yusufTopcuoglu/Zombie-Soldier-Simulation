@@ -29,6 +29,11 @@ public abstract class Soldier extends SimulationObject {
         }
     }
 
+    /**
+     * This function calls the addSoldier method of the given SimulationController object with itself as a parameter
+     * May throw NullPointerException if the controller is null
+     * @param controller is the SimulationController object that we call its addSoldier method
+     */
     @Override
     public void addItself(SimulationController controller){
         controller.addSoldier(this);
