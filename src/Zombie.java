@@ -31,6 +31,11 @@ public abstract class Zombie extends SimulationObject {
 
     public abstract void handleFollowing(SimulationController controller);
 
+    @Override
+    public void addItself(SimulationController controller) {
+        controller.addZombie(this);
+    }
+
     public ZombieState getState() {
         return state;
     }

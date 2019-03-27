@@ -51,4 +51,6 @@ public abstract class SimulationObject {
     
     
     public abstract void step(SimulationController controller);
+
+    public abstract void addItself(SimulationController controller);
 }

@@ -8,4 +8,9 @@ public class Bullet extends SimulationObject{
     public void step(SimulationController controller) {
 
     }
+
+    @Override
+    public void addItself(SimulationController controller) {
+        controller.addBullet(this);
+    }
 }

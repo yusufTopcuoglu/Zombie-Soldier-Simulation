@@ -29,6 +29,11 @@ public abstract class Soldier extends SimulationObject {
         }
     }
 
+    @Override
+    public void addItself(SimulationController controller){
+        controller.addSoldier(this);
+    }
+
     public abstract void handleSearching(SimulationController controller);
 
     public abstract void handleAiming(SimulationController controller);
