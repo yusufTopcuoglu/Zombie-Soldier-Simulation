@@ -3,11 +3,16 @@ public abstract class Zombie extends SimulationObject {
 
     private ZombieState state;
     private final ZombieType type;
+    private final double collisionRange;
+    private final double detectionRange;
 
-    public Zombie(String name, Position position, double speed, ZombieType type) {
+    public Zombie(String name, Position position, double speed, ZombieType type,
+                  double collisionRange, double detectionRange) {
         super(name, position, speed);
         this.state = ZombieState.WANDERING;
         this.type = type;
+        this.collisionRange = collisionRange;
+        this.detectionRange = detectionRange;
     }
 
     @Override
@@ -39,4 +44,11 @@ public abstract class Zombie extends SimulationObject {
     }
 
 
+    public double getCollisionRange() {
+        return collisionRange;
+    }
+
+    public double getDetectionRange() {
+        return detectionRange;
+    }
 }

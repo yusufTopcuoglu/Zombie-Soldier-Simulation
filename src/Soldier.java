@@ -3,11 +3,16 @@ public abstract class Soldier extends SimulationObject {
 
     private SoldierState state;
     private final SoldierType type;
+    private final double collisionRange;
+    private final double shootingRange;
 
-    public Soldier(String name, Position position, double speed, SoldierType type) {
+    public Soldier(String name, Position position, double speed, SoldierType type,
+                   double collisionRange, double shootingRange) {
         super(name, position, speed);
         this.state = SoldierState.SEARCHING;
         this.type = type;
+        this.collisionRange = collisionRange;
+        this.shootingRange = shootingRange;
     }
 
     @Override
@@ -42,4 +47,11 @@ public abstract class Soldier extends SimulationObject {
         return type;
     }
 
+    public double getCollisionRange() {
+        return collisionRange;
+    }
+
+    public double getShootingRange() {
+        return shootingRange;
+    }
 }
