@@ -11,18 +11,18 @@ public class Commando extends Soldier {
     }
 
     @Override
-    public void handleSearching() {
+    public void handleSearching(SimulationController controller) {
 
     }
 
     @Override
-    public void handleAiming() {
+    public void handleAiming(SimulationController controller) {
         System.out.println("Illegal Commando State");
         throw new IllegalStateException();
     }
 
     @Override
-    public void handleShooting() {
+    public void handleShooting(SimulationController controller) {
 
     }
 }

@@ -18,22 +18,22 @@ public abstract class Soldier extends SimulationObject {
     @Override
     public void step(SimulationController controller) {
         if ( state == SoldierState.SEARCHING){
-            handleSearching();
+            handleSearching(controller);
         } else if ( state == SoldierState.AIMING){
-            handleAiming();
+            handleAiming(controller);
         } else if ( state == SoldierState.SHOOTING){
-            handleShooting();
+            handleShooting(controller);
         } else {
             System.out.println("Illegal Soldier State");
             throw new IllegalStateException();
         }
     }
 
-    public abstract void handleSearching();
+    public abstract void handleSearching(SimulationController controller);
 
-    public abstract void handleAiming();
+    public abstract void handleAiming(SimulationController controller);
 
-    public abstract void handleShooting();
+    public abstract void handleShooting(SimulationController controller);
 
     public SoldierState getState() {
         return state;

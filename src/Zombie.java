@@ -18,18 +18,18 @@ public abstract class Zombie extends SimulationObject {
     @Override
     public void step(SimulationController controller) {
         if ( state == ZombieState.WANDERING){
-            handleWandering();
+            handleWandering(controller);
         } else if ( state == ZombieState.FOLLOWING){
-            handleFollowing();
+            handleFollowing(controller);
         } else {
             System.out.println("Illegal Zombie State");
             throw new IllegalStateException();
         }
     }
 
-    public abstract void handleWandering();
+    public abstract void handleWandering(SimulationController controller);
 
-    public abstract void handleFollowing();
+    public abstract void handleFollowing(SimulationController controller);
 
     public ZombieState getState() {
         return state;

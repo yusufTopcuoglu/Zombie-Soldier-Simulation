@@ -10,17 +10,17 @@ public class Sniper extends Soldier{
     }
 
     @Override
-    public void handleSearching() {
+    public void handleSearching(SimulationController controller) {
 
     }
 
     @Override
-    public void handleAiming() {
+    public void handleAiming(SimulationController controller) {
 
     }
 
     @Override
-    public void handleShooting() {
+    public void handleShooting(SimulationController controller) {
 
     }
 }

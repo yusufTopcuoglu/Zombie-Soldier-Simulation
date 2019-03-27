@@ -12,12 +12,12 @@ public class SlowZombie extends Zombie {
     }
 
     @Override
-    public void handleWandering() {
+    public void handleWandering(SimulationController controller) {
 
     }
 
     @Override
-    public void handleFollowing() {
+    public void handleFollowing(SimulationController controller) {
 
     }
 }
