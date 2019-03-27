@@ -32,6 +32,6 @@ public class SimulationController {
     }
     
     public boolean isFinished() {
-        
+        return true;
     }
 }

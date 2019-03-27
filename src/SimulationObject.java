@@ -8,6 +8,7 @@ public abstract class SimulationObject {
     private Position direction;
     private final double speed;
     private boolean active;
+
     public SimulationObject(String name, Position position, double speed) {
         this.name = name;
         this.position = position;
