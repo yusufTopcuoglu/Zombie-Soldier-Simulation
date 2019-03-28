@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -30,7 +31,48 @@ public class SimulationController {
 
     //Make sure to fill these methods for grading.
     public void stepAll() {
+        for (Bullet bullet : bullets){
+            bullet.step(this);
+        }
+        for (Soldier soldier : soldiers){
+            soldier.step(this);
+        }
+        for (Zombie zombie : zombies){
+            zombie.step(this);
+        }
+        removeInActiveObjects();
 
+    }
+
+
+    /**
+     * This function removes inActive simulation objects from their containers
+     */
+    private void removeInActiveObjects(){
+        Bullet bullet;
+        Zombie zombie;
+        Soldier soldier;
+
+        Iterator<Bullet> iteratorBullet = bullets.iterator();
+        while (iteratorBullet.hasNext()){
+            bullet = iteratorBullet.next();
+            if (! bullet.isActive())
+                iteratorBullet.remove();
+        }
+
+        Iterator<Zombie> iteratorZombie = zombies.iterator();
+        while (iteratorZombie.hasNext()){
+            zombie =  iteratorZombie.next();
+            if (! zombie.isActive())
+                iteratorZombie.remove();
+        }
+
+        Iterator<Soldier> iteratorSoldier = soldiers.iterator();
+        while (iteratorSoldier.hasNext()){
+            soldier = iteratorSoldier.next();
+            if (! soldier.isActive())
+                iteratorSoldier.remove();
+        }
     }
 
     /**
@@ -96,8 +138,40 @@ public class SimulationController {
         return bullets.isEmpty();
     }
 
+    /**
+     * This function calls the removeItself method of the given Simulation object with itself as a parameter.
+     * May throw NullPointerException if the obj is null
+     * @param obj is the SimulationObject object that we want to remove
+     */
     public void removeSimulationObject(SimulationObject obj) {
+        obj.removeItself(this);
+    }
 
+    /**
+     * This function removes the given soldier from the soldiers ArrayList
+     * May throw NullPointerException if the soldiers is null
+     * @param soldier is the Soldier object that we remove from the soldiers ArrayList
+     */
+    public void removeSoldier(Soldier soldier){
+        soldiers.remove(soldier);
+    }
+
+    /**
+     * This function removes the given zombie from the zombies ArrayList
+     * May throw NullPointerException if the zombies is null
+     * @param zombie is the Zombie object that we remove from the zombies ArrayList
+     */
+    public void removeZombie(Zombie zombie){
+        zombies.remove(zombie);
+    }
+
+    /**
+     * This function removes the given bullet from the bullets ArrayList
+     * May throw NullPointerException if the bullets is null
+     * @param bullet is the Bullet object that we remove from the bullets ArrayList
+     */
+    public void removeBullet(Bullet bullet){
+        bullets.remove(bullet);
     }
 
     public boolean isFinished() {

@@ -17,13 +17,15 @@ public abstract class Zombie extends SimulationObject {
 
     @Override
     public void step(SimulationController controller) {
-        if ( state == ZombieState.WANDERING){
-            handleWandering(controller);
-        } else if ( state == ZombieState.FOLLOWING){
-            handleFollowing(controller);
-        } else {
-            System.out.println("Illegal Zombie State");
-            throw new IllegalStateException();
+        if (isActive()){
+            if ( state == ZombieState.WANDERING){
+                handleWandering(controller);
+            } else if ( state == ZombieState.FOLLOWING){
+                handleFollowing(controller);
+            } else {
+                System.out.println("Illegal Zombie State");
+                throw new IllegalStateException();
+            }
         }
     }
 
@@ -39,6 +41,16 @@ public abstract class Zombie extends SimulationObject {
     @Override
     public void addItself(SimulationController controller) {
         controller.addZombie(this);
+    }
+
+    /**
+     * This function calls the removeZombie method of the given SimulationController object with itself as a parameter
+     * May throw NullPointerException if the controller is null
+     * @param controller is the SimulationController object that we call its removeZombie method
+     */
+    @Override
+    public void removeItself(SimulationController controller){
+        controller.removeZombie(this);
     }
 
     public ZombieState getState() {

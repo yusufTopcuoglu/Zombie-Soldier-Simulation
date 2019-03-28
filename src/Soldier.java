@@ -17,15 +17,17 @@ public abstract class Soldier extends SimulationObject {
 
     @Override
     public void step(SimulationController controller) {
-        if ( state == SoldierState.SEARCHING){
-            handleSearching(controller);
-        } else if ( state == SoldierState.AIMING){
-            handleAiming(controller);
-        } else if ( state == SoldierState.SHOOTING){
-            handleShooting(controller);
-        } else {
-            System.out.println("Illegal Soldier State");
-            throw new IllegalStateException();
+        if (isActive()){
+            if ( state == SoldierState.SEARCHING){
+                handleSearching(controller);
+            } else if ( state == SoldierState.AIMING){
+                handleAiming(controller);
+            } else if ( state == SoldierState.SHOOTING){
+                handleShooting(controller);
+            } else {
+                System.out.println("Illegal Soldier State");
+                throw new IllegalStateException();
+            }
         }
     }
 
@@ -37,6 +39,16 @@ public abstract class Soldier extends SimulationObject {
     @Override
     public void addItself(SimulationController controller){
         controller.addSoldier(this);
+    }
+
+    /**
+     * This function calls the removeSoldier method of the given SimulationController object with itself as a parameter
+     * May throw NullPointerException if the controller is null
+     * @param controller is the SimulationController object that we call its removeSoldier method
+     */
+    @Override
+    public void removeItself(SimulationController controller){
+        controller.removeSoldier(this);
     }
 
     public abstract void handleSearching(SimulationController controller);

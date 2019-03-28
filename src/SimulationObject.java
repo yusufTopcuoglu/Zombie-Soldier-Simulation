@@ -13,7 +13,7 @@ public abstract class SimulationObject {
         this.name = name;
         this.position = position;
         this.speed = speed;
-        this.direction = null;
+        this.direction = Position.generateRandomDirection(true);
         this.active = true;
     }
 
@@ -53,4 +53,6 @@ public abstract class SimulationObject {
     public abstract void step(SimulationController controller);
 
     public abstract void addItself(SimulationController controller);
+
+    public abstract void removeItself(SimulationController controller);
 }
