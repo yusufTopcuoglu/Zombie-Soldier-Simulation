@@ -174,7 +174,36 @@ public class SimulationController {
         bullets.remove(bullet);
     }
 
+    /**
+     * This method checks if the game is finished or not.
+     * It decides it by looking if zombies or soldiers are empty
+     * @return true if any of the soldiers or zombies are not present in the game, false other wise.
+     */
     public boolean isFinished() {
-        return true;
+        return isZombiesEmpty() || isSoldiersEmpty();
+    }
+
+    public Zombie getZombie(int index){
+        return zombies.get(index);
+    }
+
+    public Soldier getSoldier(int index){
+        return soldiers.get(index);
+    }
+
+    public Bullet getBullet(int index){
+        return bullets.get(index);
+    }
+
+    public int zombieCount(){
+        return zombies.size();
+    }
+
+    public int soldierCount(){
+        return soldiers.size();
+    }
+
+    public int bulletCount(){
+        return bullets.size();
     }
 }

@@ -17,6 +17,15 @@ public abstract class SimulationObject {
         this.active = true;
     }
 
+    public Position calculateNextPosition(){
+        return position.getSummedPosition(direction.getMultipliedPosition(speed));
+    }
+
+    public void turnDirectionToPosition(Position position){
+        direction = position.getSubtractedPosition(direction);
+        direction.normalize();
+    }
+
     public String getName() {
         return name;
     }
