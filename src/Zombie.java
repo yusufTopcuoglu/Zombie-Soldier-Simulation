@@ -35,7 +35,7 @@ public abstract class Zombie extends SimulationObject {
     public abstract void handleFollowing(SimulationController controller);
 
     public boolean canDetect(double distance){
-        return getDetectionRange() <= distance;
+        return getDetectionRange() >= distance;
     }
 
     /**
@@ -75,7 +75,7 @@ public abstract class Zombie extends SimulationObject {
      * Zombie1 moved to (12.37, 34.43).
      */
     public void printPositionChange(){
-        System.out.print(getName() + " moved to " + getPosition() + ".");
+        System.out.println(getName() + " moved to " + getPosition() + ".");
     }
 
     /**
@@ -85,7 +85,7 @@ public abstract class Zombie extends SimulationObject {
      * Zombie1 changed direction to (0.33, -0.94).
      */
     public void printDirectionChange(){
-        System.out.print(getName() + " changed direction to " + getDirection() + ".");
+        System.out.println(getName() + " changed direction to " + getDirection() + ".");
     }
 
     /**
@@ -131,7 +131,7 @@ public abstract class Zombie extends SimulationObject {
 
     @Override
     public void setPosition(Position position) {
-        super.setDirection(position);
+        super.setPosition(position);
         printPositionChange();
     }
 

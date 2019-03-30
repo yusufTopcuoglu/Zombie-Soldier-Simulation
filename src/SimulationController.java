@@ -34,7 +34,8 @@ public class SimulationController {
     }
 
     public boolean isPositionInside(Position position){
-        return height >= position.getY() && width >= position.getX();
+        return height >= position.getY() && width >= position.getX()
+                && position.getX() >= 0 && position.getY() >= 0;
     }
 
     //Make sure to fill these methods for grading.
@@ -74,7 +75,7 @@ public class SimulationController {
         double index = 0, tempDistance;
 
         for (int i = 0; i < soldierCount(); i++){
-            tempDistance = position.distance(getZombie(i).getPosition());
+            tempDistance = position.distance(getSoldier(i).getPosition());
             if (tempDistance < distance){
                 distance = tempDistance;
                 index = i;
