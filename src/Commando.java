@@ -1,5 +1,3 @@
-import javafx.geometry.Pos;
-
 import java.util.HashMap;
 
 /**
@@ -12,6 +10,13 @@ public class Commando extends Soldier {
         super(name, position, Constants.COMMANDO_SPEED, SoldierType.COMMANDO,
                 Constants.COMMANDO_COLLISION_RANGE, Constants.COMMANDO_SHOOTING_RANGE);
 
+    }
+
+    @Override
+    public void createBullet(SimulationController controller) {
+        Bullet bullet = new CommandoBullet(getPosition(), getDirection());
+        controller.addBullet(bullet);
+        printFiringBullet(bullet.getName());
     }
 
     /**
@@ -66,6 +71,10 @@ public class Commando extends Soldier {
 
     }
 
+    /**
+     * Throws illegal statte exception since commando have no aiming state
+     * @param controller is the SimulationController object that the simulation plays in
+     */
     @Override
     public void handleAiming(SimulationController controller) {
         System.out.println("Illegal Commando State");
@@ -74,6 +83,20 @@ public class Commando extends Soldier {
 
     @Override
     public void handleShooting(SimulationController controller) {
+        createBullet(controller);
 
+        // calculate distance and index of closest zombie
+        HashMap<String, Double> closestZombieValues = controller.getClosestEnemyValues(this);
+        double distance = closestZombieValues.get("distance");
+        double index = closestZombieValues.get("index");
+
+        // if soldier can shoot to this distance
+        if(canShoot(distance)){
+            turnDirectionToPosition(controller.getZombie((int) index).getPosition());
+        } else {
+            // soldier can not shoot to that distance
+            setPosition(Position.generateRandomDirection(true));
+            setState(SoldierState.SEARCHING);
+        }
     }
 }

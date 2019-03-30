@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /**
  *
  *
@@ -7,6 +9,13 @@ public class Sniper extends Soldier{
     public Sniper(String name, Position position) { // DO NOT CHANGE PARAMETERS
         super(name, position, Constants.SNIPER_SPEED, SoldierType.SNIPER,
                 Constants.SNIPER_COLLISION_RANGE, Constants.SNIPER_SHOOTING_RANGE);
+    }
+
+    @Override
+    public void createBullet(SimulationController controller) {
+        Bullet bullet = new SniperBullet(getPosition(), getDirection());
+        controller.addBullet(bullet);
+        printFiringBullet(bullet.getName());
     }
 
     /**
@@ -31,13 +40,23 @@ public class Sniper extends Soldier{
         setState(SoldierState.AIMING);
     }
 
-    @Override
-    public void handleAiming(SimulationController controller) {
-
-    }
 
     @Override
     public void handleShooting(SimulationController controller) {
+        createBullet(controller);
 
+        // calculate distance and index of closest zombie
+        HashMap<String, Double> closestZombieValues = controller.getClosestEnemyValues(this);
+        double distance = closestZombieValues.get("distance");
+        double index = closestZombieValues.get("index");
+
+        // if soldier can shoot to this distance
+        if(canShoot(distance)){
+            setState(SoldierState.AIMING);
+        } else {
+            // soldier can not shoot to that distance
+            setDirection(Position.generateRandomDirection(true));
+            setState(SoldierState.SEARCHING);
+        }
     }
 }

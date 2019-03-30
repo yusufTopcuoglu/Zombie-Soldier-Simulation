@@ -12,6 +12,13 @@ public class RegularSoldier extends Soldier {
     }
 
 
+    @Override
+    public void createBullet(SimulationController controller) {
+        Bullet bullet = new RegularSoldierBullet(getPosition(), getDirection());
+        controller.addBullet(bullet);
+        printFiringBullet(bullet.getName());
+    }
+
     /**
      * This function behaves like this ;
      * – Calculate the next position of the soldier
@@ -44,12 +51,20 @@ public class RegularSoldier extends Soldier {
     }
 
     @Override
-    public void handleAiming(SimulationController controller) {
-
-    }
-
-    @Override
     public void handleShooting(SimulationController controller) {
+        createBullet(controller);
+
+        // calculate distance and index of closest zombie
+        HashMap<String, Double> closestZombieValues = controller.getClosestEnemyValues(this);
+        double distance = closestZombieValues.get("distance");
+        if (canShoot(distance)){
+            // soldier can shoot to that distance, change state to aiming
+            setState(SoldierState.AIMING);
+        } else {
+            // soldier can not shoot to that distance
+            setDirection(Position.generateRandomDirection(true));
+            setState(SoldierState.SEARCHING);
+        }
 
     }
 }

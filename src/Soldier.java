@@ -70,13 +70,28 @@ public abstract class Soldier extends SimulationObject {
         printDirectionChange();
     }
 
+    public abstract void createBullet(SimulationController controller);
+
     public boolean canShoot(double distance){
         return shootingRange >= distance;
     }
 
     public abstract void handleSearching(SimulationController controller);
 
-    public abstract void handleAiming(SimulationController controller);
+    public void handleAiming(SimulationController controller) {
+        // calculate distance and index of closest zombie
+        HashMap<String, Double> closestZombieValues = controller.getClosestEnemyValues(this);
+        double distance = closestZombieValues.get("distance");
+        double index = closestZombieValues.get("index");
+
+        if (canShoot(distance)){
+            // soldier can shoot to that distance
+            turnDirectionToPosition(controller.getZombie((int) index).getPosition());
+            setState(SoldierState.SHOOTING);
+        } else {
+            setState(SoldierState.SEARCHING);
+        }
+    }
 
     public abstract void handleShooting(SimulationController controller);
 

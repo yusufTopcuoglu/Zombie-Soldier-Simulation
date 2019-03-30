@@ -1,8 +1,8 @@
 public class Bullet extends SimulationObject{
 
-    public Bullet(String name, Position position, double speed) {
-        super(name, position, speed);
-        // dont forget setDirection();
+    public Bullet(Position position, Position direction, double speed) {
+        super("Bullet" + SimulationController.getNextBulletNo(), position, speed);
+        setDirection(direction);
     }
 
     @Override

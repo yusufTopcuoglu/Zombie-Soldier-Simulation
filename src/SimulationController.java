@@ -1,5 +1,3 @@
-import javafx.geometry.Pos;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -12,6 +10,8 @@ public class SimulationController {
     private final double height;
     private final double width;
 
+    private static int nextBulletNo = 0;
+
     private ArrayList<Soldier> soldiers;
     private ArrayList<Zombie> zombies;
     private ArrayList<Bullet> bullets;
@@ -23,6 +23,7 @@ public class SimulationController {
         zombies = new ArrayList<>();
         bullets = new ArrayList<>();
     }
+
 
     public double getHeight() {
         return height;
@@ -171,6 +172,7 @@ public class SimulationController {
      */
     public void addBullet(Bullet bullet){
         bullets.add(bullet);
+        nextBulletNo++;
     }
 
     /**
@@ -237,6 +239,10 @@ public class SimulationController {
 
     public Bullet getBullet(int index){
         return bullets.get(index);
+    }
+
+    public static int getNextBulletNo() {
+        return nextBulletNo;
     }
 
     public int zombieCount(){
