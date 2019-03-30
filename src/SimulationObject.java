@@ -58,7 +58,20 @@ public abstract class SimulationObject {
         this.active = active;
     }
     
-    
+    public void goNextOrChangeDirection(SimulationController controller){
+        // calculate the next position
+        Position nextPosition = calculateNextPosition();
+        if ( controller.isPositionInside(nextPosition) ){
+            // the nextPosition is inside the borders of controller
+            setPosition(nextPosition);
+        } else {
+            // the nextPosition is out of borders of controller
+            // change direction randomly
+            setDirection(Position.generateRandomDirection(true));
+        }
+
+    }
+
     public abstract void step(SimulationController controller);
 
     public abstract void addItself(SimulationController controller);

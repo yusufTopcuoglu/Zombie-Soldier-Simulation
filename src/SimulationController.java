@@ -52,13 +52,12 @@ public class SimulationController {
 
     }
 
-    public HashMap<String, Double> getClosestEnemyValues(Soldier soldier){
+    public HashMap<String, Double> getClosestZombieValues(Position position){
         double distance = Double.MAX_VALUE;
         double index = 0, tempDistance;
-        Position soldierPosition = soldier.getPosition();
 
         for (int i = 0; i < zombieCount(); i++){
-            tempDistance = soldierPosition.distance(getZombie(i).getPosition());
+            tempDistance = position.distance(getZombie(i).getPosition());
             if (tempDistance < distance){
                 distance = tempDistance;
                 index = i;
@@ -70,13 +69,12 @@ public class SimulationController {
         return values;
     }
 
-    public HashMap<String, Double> getClosestEnemyValues(Zombie zombie){
+    public HashMap<String, Double> getClosestSoldierValues(Position position){
         double distance = Double.MAX_VALUE;
         double index = 0, tempDistance;
-        Position zombiePosition = zombie.getPosition();
 
         for (int i = 0; i < soldierCount(); i++){
-            tempDistance = zombiePosition.distance(getZombie(i).getPosition());
+            tempDistance = position.distance(getZombie(i).getPosition());
             if (tempDistance < distance){
                 distance = tempDistance;
                 index = i;
@@ -87,8 +85,6 @@ public class SimulationController {
         values.put("index", index);
         return values;
     }
-
-
 
     /**
      * This function removes inActive simulation objects from their containers

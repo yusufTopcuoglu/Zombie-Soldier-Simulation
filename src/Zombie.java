@@ -1,3 +1,4 @@
+import java.util.HashMap;
 
 public abstract class Zombie extends SimulationObject {
 
@@ -32,6 +33,10 @@ public abstract class Zombie extends SimulationObject {
     public abstract void handleWandering(SimulationController controller);
 
     public abstract void handleFollowing(SimulationController controller);
+
+    public boolean canDetect(double distance){
+        return getDetectionRange() <= distance;
+    }
 
     /**
      * This function calls the addZombie method of the given SimulationController object with itself as a parameter
@@ -95,6 +100,20 @@ public abstract class Zombie extends SimulationObject {
         System.out.print(getName() + " killed " + soldierName + ".");
     }
 
+    public boolean canKillSoldier(SimulationController controller){
+        // calculate distance and index of closest soldier
+        HashMap<String, Double> closestSoldierValues = controller.getClosestSoldierValues(getPosition());
+        double distance = closestSoldierValues.get("distance");
+        double index = closestSoldierValues.get("index");
+        if (distance <= getCollisionRange() + controller.getSoldier((int) index).getCollisionRange()){
+            // can kill the soldier
+            controller.getSoldier((int) index).setActive(false);
+            printKillingSoldier(controller.getSoldier((int) index).getName());
+            return true;
+        }
+        return false;
+    }
+
     public ZombieState getState() {
         return state;
     }
@@ -119,7 +138,6 @@ public abstract class Zombie extends SimulationObject {
     public ZombieType getType() {
         return type;
     }
-
 
     public double getCollisionRange() {
         return collisionRange;

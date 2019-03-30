@@ -31,18 +31,12 @@ public class RegularSoldier extends Soldier {
      */
     @Override
     public void handleSearching(SimulationController controller) {
-        // calculate the next position
-        Position nextPosition = calculateNextPosition();
-        if ( controller.isPositionInside(nextPosition) ){
-            // the nextPosition is inside the borders of controller
-            setPosition(nextPosition);
-        } else {
-            // the nextPosition is out of borders of controller
-            // change direction randomly
-            setDirection(Position.generateRandomDirection(true));
-        }
+        // go next position if no going out of borders
+        // change direction otherwise
+        goNextOrChangeDirection(controller);
+
         // calculate distance and index of closest zombie
-        HashMap<String, Double> closestZombieValues = controller.getClosestEnemyValues(this);
+        HashMap<String, Double> closestZombieValues = controller.getClosestZombieValues(getPosition());
         double distance = closestZombieValues.get("distance");
         if (canShoot(distance)){
             // soldier can shoot to that distance, change state to aiming
@@ -50,21 +44,4 @@ public class RegularSoldier extends Soldier {
         }
     }
 
-    @Override
-    public void handleShooting(SimulationController controller) {
-        createBullet(controller);
-
-        // calculate distance and index of closest zombie
-        HashMap<String, Double> closestZombieValues = controller.getClosestEnemyValues(this);
-        double distance = closestZombieValues.get("distance");
-        if (canShoot(distance)){
-            // soldier can shoot to that distance, change state to aiming
-            setState(SoldierState.AIMING);
-        } else {
-            // soldier can not shoot to that distance
-            setDirection(Position.generateRandomDirection(true));
-            setState(SoldierState.SEARCHING);
-        }
-
-    }
 }

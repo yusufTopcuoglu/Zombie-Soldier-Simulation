@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class Bullet extends SimulationObject{
 
     Bullet(Position position, Position direction, double speed) {
@@ -7,6 +9,34 @@ public class Bullet extends SimulationObject{
 
     @Override
     public void step(SimulationController controller) {
+        if (isActive()){
+            for (int i = 0; i < getSpeed(); i++){
+                // calculate distance and index of closest zombie
+                HashMap<String, Double> closestZombieValues = controller.getClosestZombieValues(getPosition());
+                double distance = closestZombieValues.get("distance");
+                double index = closestZombieValues.get("index");
+                if (distance <= controller.getZombie((int) index).getCollisionRange()){
+                    // bullet hit the zombie
+                    controller.getZombie((int) index).setActive(false);
+                    printCollisionZombie(controller.getZombie((int) index).getName());
+                    setActive(false);
+                    return;
+                }
+                // bullet did not hit, going on its way
+                // go 1 unit further along the direction
+                getPosition().add(getDirection());
+
+                if (controller.isPositionInside(getPosition())){
+                    // moved out of the bounds, stop loop
+                    printGoingOut();
+                    setActive(false);
+                    return;
+                }
+
+            }
+            printCompletingStepWithoutAction();
+            setActive(false);
+        }
 
     }
 

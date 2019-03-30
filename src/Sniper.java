@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 /**
  *
  *
@@ -28,35 +26,12 @@ public class Sniper extends Soldier{
      */
     @Override
     public void handleSearching(SimulationController controller) {
-        // calculate next position of the soldier
-        Position nextPosition = calculateNextPosition();
-        if ( controller.isPositionInside(nextPosition)){
-            // next position is inside the bounds, change position to hte next position
-            setPosition(nextPosition);
-        } else {
-            // next position is out of bounds, set direction randomly
-            setDirection(Position.generateRandomDirection(true));
-        }
+        // go next position if no going out of borders
+        // change direction otherwise
+        goNextOrChangeDirection(controller);
+
         setState(SoldierState.AIMING);
     }
 
 
-    @Override
-    public void handleShooting(SimulationController controller) {
-        createBullet(controller);
-
-        // calculate distance and index of closest zombie
-        HashMap<String, Double> closestZombieValues = controller.getClosestEnemyValues(this);
-        double distance = closestZombieValues.get("distance");
-        double index = closestZombieValues.get("index");
-
-        // if soldier can shoot to this distance
-        if(canShoot(distance)){
-            setState(SoldierState.AIMING);
-        } else {
-            // soldier can not shoot to that distance
-            setDirection(Position.generateRandomDirection(true));
-            setState(SoldierState.SEARCHING);
-        }
-    }
 }

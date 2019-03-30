@@ -80,7 +80,7 @@ public abstract class Soldier extends SimulationObject {
 
     public void handleAiming(SimulationController controller) {
         // calculate distance and index of closest zombie
-        HashMap<String, Double> closestZombieValues = controller.getClosestEnemyValues(this);
+        HashMap<String, Double> closestZombieValues = controller.getClosestZombieValues(getPosition());
         double distance = closestZombieValues.get("distance");
         double index = closestZombieValues.get("index");
 
@@ -93,7 +93,22 @@ public abstract class Soldier extends SimulationObject {
         }
     }
 
-    public abstract void handleShooting(SimulationController controller);
+    public void handleShooting(SimulationController controller) {
+        createBullet(controller);
+
+        // calculate distance and index of closest zombie
+        HashMap<String, Double> closestZombieValues = controller.getClosestZombieValues(getPosition());
+        double distance = closestZombieValues.get("distance");
+        if (canShoot(distance)){
+            // soldier can shoot to that distance, change state to aiming
+            setState(SoldierState.AIMING);
+        } else {
+            // soldier can not shoot to that distance
+            setDirection(Position.generateRandomDirection(true));
+            setState(SoldierState.SEARCHING);
+        }
+
+    }
 
 //    'StringBuilder stringBuilder' can be replaced with 'String' less... (Ctrl+F1)
 //    Inspection info: Reports any usages of StringBuffer, StringBuilder or StringJoiner

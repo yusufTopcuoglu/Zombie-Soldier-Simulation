@@ -37,7 +37,7 @@ public class Commando extends Soldier {
     @Override
     public void handleSearching(SimulationController controller) {
         // calculate distance and index of closest zombie
-        HashMap<String, Double> closestZombieValues = controller.getClosestEnemyValues(this);
+        HashMap<String, Double> closestZombieValues = controller.getClosestZombieValues(getPosition());
         double distance = closestZombieValues.get("distance");
         double index = closestZombieValues.get("index");
 
@@ -48,20 +48,14 @@ public class Commando extends Soldier {
             return;
         }
 
-        // soldier could not shoot to the closest zombie
-        // move to the next position
-        Position nextPosition = calculateNextPosition();
-        if ( controller.isPositionInside(nextPosition) ){
-            // next position inside borders, change position
-            setPosition(nextPosition);
-            // re-calculate the distance and index of closest zombie
-            closestZombieValues = controller.getClosestEnemyValues(this);
-            distance = closestZombieValues.get("distance");
-            index = closestZombieValues.get("index");
-        } else {
-            // nex position out of borders, change direction
-            setDirection(Position.generateRandomDirection(true));
-        }
+        // go next position if no going out of borders
+        // change direction otherwise
+        goNextOrChangeDirection(controller);
+
+        // re-calculate the distance and index of closest zombie
+        closestZombieValues = controller.getClosestZombieValues(getPosition());
+        distance = closestZombieValues.get("distance");
+        index = closestZombieValues.get("index");
 
         if(canShoot(distance)){
             // soldier can shoot to this distance
@@ -86,7 +80,7 @@ public class Commando extends Soldier {
         createBullet(controller);
 
         // calculate distance and index of closest zombie
-        HashMap<String, Double> closestZombieValues = controller.getClosestEnemyValues(this);
+        HashMap<String, Double> closestZombieValues = controller.getClosestZombieValues(getPosition());
         double distance = closestZombieValues.get("distance");
         double index = closestZombieValues.get("index");
 
