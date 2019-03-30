@@ -17,7 +17,7 @@ public class RegularSoldier extends Soldier {
      * – Calculate the next position of the soldier
      * – If the position is out of bounds, change direction to random value
      * – If the position is not out of bounds, change soldier position to the new_position.
-     * – Calculate the euclidean distance (3.1.2) to the closest zombie.
+     * – Calculate the euclidean distance to the closest zombie.
      * – If the distance is shorter than or equal to the shooting range of the soldier, change state to
      * AIMING.
      * @param controller is the SimulationController object that the simulation plays in
@@ -26,7 +26,7 @@ public class RegularSoldier extends Soldier {
     public void handleSearching(SimulationController controller) {
         // calculate the next position
         Position nextPosition = calculateNextPosition();
-        if (nextPosition.isInsideBounds(controller)){
+        if ( controller.isPositionInside(nextPosition) ){
             // the nextPosition is inside the borders of controller
             setPosition(nextPosition);
         } else {
@@ -35,7 +35,7 @@ public class RegularSoldier extends Soldier {
             setDirection(Position.generateRandomDirection(true));
         }
         // calculate distance and index of closest zombie
-        HashMap<String, Double> closestZombieValues = getClosestZombieValues(controller);
+        HashMap<String, Double> closestZombieValues = controller.getClosestEnemyValues(this);
         double distance = closestZombieValues.get("distance");
         if (canShoot(distance)){
             // soldier can shoot to that distance, change state to aiming

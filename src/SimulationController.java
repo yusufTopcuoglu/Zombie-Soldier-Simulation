@@ -1,4 +1,7 @@
+import javafx.geometry.Pos;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -29,6 +32,10 @@ public class SimulationController {
         return width;
     }
 
+    public boolean isPositionInside(Position position){
+        return height >= position.getY() && width >= position.getX();
+    }
+
     //Make sure to fill these methods for grading.
     public void stepAll() {
         for (Bullet bullet : bullets){
@@ -43,6 +50,43 @@ public class SimulationController {
         removeInActiveObjects();
 
     }
+
+    public HashMap<String, Double> getClosestEnemyValues(Soldier soldier){
+        double distance = Double.MAX_VALUE;
+        double index = 0, tempDistance;
+        Position soldierPosition = soldier.getPosition();
+
+        for (int i = 0; i < zombieCount(); i++){
+            tempDistance = soldierPosition.distance(getZombie(i).getPosition());
+            if (tempDistance < distance){
+                distance = tempDistance;
+                index = i;
+            }
+        }
+        HashMap<String, Double> values = new HashMap<>();
+        values.put("distance", distance);
+        values.put("index", index);
+        return values;
+    }
+
+    public HashMap<String, Double> getClosestEnemyValues(Zombie zombie){
+        double distance = Double.MAX_VALUE;
+        double index = 0, tempDistance;
+        Position zombiePosition = zombie.getPosition();
+
+        for (int i = 0; i < soldierCount(); i++){
+            tempDistance = zombiePosition.distance(getZombie(i).getPosition());
+            if (tempDistance < distance){
+                distance = tempDistance;
+                index = i;
+            }
+        }
+        HashMap<String, Double> values = new HashMap<>();
+        values.put("distance", distance);
+        values.put("index", index);
+        return values;
+    }
+
 
 
     /**

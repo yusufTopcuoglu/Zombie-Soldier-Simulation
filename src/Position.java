@@ -45,10 +45,6 @@ public class Position {
         return new Position(this.x - other.x, this.y - other.y);
     }
 
-    public boolean isInsideBounds(SimulationController controller){
-        return controller.getHeight() >= this.y && controller.getWidth() >= this.x;
-    }
-
     public void mult(double constant) {
         this.x *= constant;
         this.y *= constant;

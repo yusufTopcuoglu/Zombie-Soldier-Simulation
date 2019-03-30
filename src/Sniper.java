@@ -21,7 +21,7 @@ public class Sniper extends Soldier{
     public void handleSearching(SimulationController controller) {
         // calculate next position of the soldier
         Position nextPosition = calculateNextPosition();
-        if (nextPosition.isInsideBounds(controller)){
+        if ( controller.isPositionInside(nextPosition)){
             // next position is inside the bounds, change position to hte next position
             setPosition(nextPosition);
         } else {

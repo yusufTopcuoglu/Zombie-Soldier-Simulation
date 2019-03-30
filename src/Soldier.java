@@ -52,22 +52,6 @@ public abstract class Soldier extends SimulationObject {
         controller.removeSoldier(this);
     }
 
-    public HashMap<String, Double> getClosestZombieValues(SimulationController controller){
-        double distance = Double.MAX_VALUE;
-        double index = 0, tempDistance;
-        for (int i = 0; i < controller.zombieCount(); i++){
-            tempDistance = getPosition().distance(controller.getZombie(i).getPosition());
-            if (tempDistance < distance){
-                distance = tempDistance;
-                index = i;
-            }
-        }
-        HashMap<String, Double> values = new HashMap<>();
-        values.put("distance", distance);
-        values.put("index", index);
-        return values;
-    }
-
 
     public boolean canShoot(double distance){
         return shootingRange >= distance;
