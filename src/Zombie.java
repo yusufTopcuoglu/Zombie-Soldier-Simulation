@@ -53,12 +53,67 @@ public abstract class Zombie extends SimulationObject {
         controller.removeZombie(this);
     }
 
+    /**
+     * This function prints in the following format ;
+     * <zombie_name> changed state to <state_name>.<newline>
+     * For example:
+     * Zombie1 changed state to WANDERING.
+     */
+    public void printStateChange(){
+        System.out.println(getName() + " changed state to " + getState() + ".");
+    }
+
+    /**
+     * This function prints in the following format ;
+     * <zombie_name> moved to <position>.<newline>
+     * For example:
+     * Zombie1 moved to (12.37, 34.43).
+     */
+    public void printPositionChange(){
+        System.out.print(getName() + " moved to " + getPosition() + ".");
+    }
+
+    /**
+     * This function prints in the following format ;
+     * <zombie_name> changed direction to <direction>.<newline>
+     * For example:
+     * Zombie1 changed direction to (0.33, -0.94).
+     */
+    public void printDirectionChange(){
+        System.out.print(getName() + " changed direction to " + getDirection() + ".");
+    }
+
+    /**
+     * This function prints in the following format ;
+     * <zombie_name> killed <soldier_name>.<newline>
+     * For example:
+     * Zombie1 killed Soldier1.
+     *
+     * @param soldierName is the name of the killed soldier
+     */
+    public void printKillingSoldier(String soldierName){
+        System.out.print(getName() + " killed " + soldierName + ".");
+    }
+
     public ZombieState getState() {
         return state;
     }
 
     public void setState(ZombieState state) {
         this.state = state;
+        printStateChange();
+    }
+
+    @Override
+    public void setDirection(Position direction) {
+        super.setDirection(direction);
+        printDirectionChange();
+    }
+
+    @Override
+    public void setPosition(Position position) {
+        super.setDirection(position);
+        printPositionChange();
     }
 
     public ZombieType getType() {

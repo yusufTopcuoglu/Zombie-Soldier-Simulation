@@ -52,6 +52,23 @@ public abstract class Soldier extends SimulationObject {
         controller.removeSoldier(this);
     }
 
+    @Override
+    public void turnDirectionToPosition(Position position){
+        super.turnDirectionToPosition(position);
+        printDirectionChange();
+    }
+
+    @Override
+    public void setPosition(Position position) {
+        super.setPosition(position);
+        printPositionChange();
+    }
+
+    @Override
+    public void setDirection(Position direction) {
+        super.setDirection(direction);
+        printDirectionChange();
+    }
 
     public boolean canShoot(double distance){
         return shootingRange >= distance;
@@ -63,12 +80,63 @@ public abstract class Soldier extends SimulationObject {
 
     public abstract void handleShooting(SimulationController controller);
 
+//    'StringBuilder stringBuilder' can be replaced with 'String' less... (Ctrl+F1)
+//    Inspection info: Reports any usages of StringBuffer, StringBuilder or StringJoiner
+//    which can be replaced with a single java.lang.String concatenation.
+//    Using a String concatenation makes the code shorter and simpler.
+//    This inspection only reports when the resulting concatenation is at least
+//    as efficient or more efficient than the original code.
+
+    /**
+     * This function prints in the following format ;
+     * <soldier_name> changed state to <state_name>.<newline>
+     * For example:
+     * Soldier1 changed state to AIMING.
+     */
+    public void printStateChange(){
+        System.out.println(getName() + " changed state to " + getState() + ".");
+    }
+
+    /**
+     * This function prints in the following format ;
+     * <soldier_name> moved to <position>.<newline>
+     * For example:
+     * Soldier1 moved to (12.37, 34.43).
+     */
+    public void printPositionChange(){
+        System.out.println(getName() + " moved to " + getPosition() + ".");
+    }
+
+    /**
+     * This function prints in the following format ;
+     * <soldier_name> changed direction to <direction>.<newline>
+     * For example:
+     * Soldier1 changed direction to (0.33, -0.94).
+     */
+    public void printDirectionChange(){
+        System.out.println(getName() + " changed direction to " + getDirection() + ".");
+    }
+
+    /**
+     * This function prints in the following format ;
+     * <soldier_name> fired <bullet_name> to <direction>.<newline>
+     * For example:
+     * Soldier1 fired Bullet0 to direction (0.51, 0.86).
+     *
+     * @param bulletName is the name of fired bullet
+     */
+    public void printFiringBullet(String bulletName){
+        System.out.println(getName() + " fired " + bulletName + " to " + getDirection() + ".");
+    }
+
+
     public SoldierState getState() {
         return state;
     }
 
     public void setState(SoldierState state) {
         this.state = state;
+        printStateChange();
     }
 
     public SoldierType getType() {
