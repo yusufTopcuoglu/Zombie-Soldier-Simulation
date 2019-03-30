@@ -14,7 +14,7 @@ public class RegularSoldier extends Soldier {
 
     @Override
     public void createBullet(SimulationController controller) {
-        Bullet bullet = new RegularSoldierBullet(getPosition(), getDirection());
+        Bullet bullet = Bullet.factoryRegularSoldierBullet(getPosition(), getDirection());
         controller.addBullet(bullet);
         printFiringBullet(bullet.getName());
     }

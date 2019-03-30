@@ -14,7 +14,7 @@ public class Commando extends Soldier {
 
     @Override
     public void createBullet(SimulationController controller) {
-        Bullet bullet = new CommandoBullet(getPosition(), getDirection());
+        Bullet bullet = Bullet.factoryCommandoBullet(getPosition(), getDirection());
         controller.addBullet(bullet);
         printFiringBullet(bullet.getName());
     }

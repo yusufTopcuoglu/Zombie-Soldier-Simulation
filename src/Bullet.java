@@ -1,6 +1,6 @@
 public class Bullet extends SimulationObject{
 
-    public Bullet(Position position, Position direction, double speed) {
+    Bullet(Position position, Position direction, double speed) {
         super("Bullet" + SimulationController.getNextBulletNo(), position, speed);
         setDirection(direction);
     }
@@ -28,6 +28,18 @@ public class Bullet extends SimulationObject{
     @Override
     public void removeItself(SimulationController controller) {
         controller.removeBullet(this);
+    }
+
+    static Bullet factoryCommandoBullet(Position position, Position direction){
+        return new Bullet(position, direction, Constants.COMMANDO_BULLET_SPEED);
+    }
+
+    static Bullet factorySniperBullet(Position position, Position direction){
+        return new Bullet(position, direction, Constants.SNIPER_BULLET_SPEED);
+    }
+
+    static Bullet factoryRegularSoldierBullet(Position position, Position direction){
+        return new Bullet(position, direction, Constants.REGULAR_SOLDIER_BULLET_SPEED);
     }
 
     /**
