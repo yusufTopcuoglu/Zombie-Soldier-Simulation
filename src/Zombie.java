@@ -60,7 +60,7 @@ public abstract class Zombie extends SimulationObject {
 
     /**
      * This function prints in the following format ;
-     * <zombie_name> changed state to <state_name>.<newline>
+     * "zombie_name" changed state to "state_name"."newline"
      * For example:
      * Zombie1 changed state to WANDERING.
      */
@@ -70,7 +70,7 @@ public abstract class Zombie extends SimulationObject {
 
     /**
      * This function prints in the following format ;
-     * <zombie_name> moved to <position>.<newline>
+     * "zombie_name" moved to "position"."newline"
      * For example:
      * Zombie1 moved to (12.37, 34.43).
      */
@@ -80,7 +80,7 @@ public abstract class Zombie extends SimulationObject {
 
     /**
      * This function prints in the following format ;
-     * <zombie_name> changed direction to <direction>.<newline>
+     * "zombie_name" changed direction to "direction"."newline"
      * For example:
      * Zombie1 changed direction to (0.33, -0.94).
      */
@@ -90,7 +90,7 @@ public abstract class Zombie extends SimulationObject {
 
     /**
      * This function prints in the following format ;
-     * <zombie_name> killed <soldier_name>.<newline>
+     * "zombie_name" killed "soldier_name"."newline"
      * For example:
      * Zombie1 killed Soldier1.
      *

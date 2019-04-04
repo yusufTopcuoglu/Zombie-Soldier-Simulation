@@ -119,7 +119,7 @@ public abstract class Soldier extends SimulationObject {
 
     /**
      * This function prints in the following format ;
-     * <soldier_name> changed state to <state_name>.<newline>
+     * "soldier_name" changed state to "state_name"."newline"
      * For example:
      * Soldier1 changed state to AIMING.
      */
@@ -129,7 +129,7 @@ public abstract class Soldier extends SimulationObject {
 
     /**
      * This function prints in the following format ;
-     * <soldier_name> moved to <position>.<newline>
+     * "soldier_name" moved to "position"."newline"
      * For example:
      * Soldier1 moved to (12.37, 34.43).
      */
@@ -139,7 +139,7 @@ public abstract class Soldier extends SimulationObject {
 
     /**
      * This function prints in the following format ;
-     * <soldier_name> changed direction to <direction>.<newline>
+     * soldier_name changed direction to direction.<newline>
      * For example:
      * Soldier1 changed direction to (0.33, -0.94).
      */
@@ -149,14 +149,14 @@ public abstract class Soldier extends SimulationObject {
 
     /**
      * This function prints in the following format ;
-     * <soldier_name> fired <bullet_name> to <direction>.<newline>
+     * "soldier_name fired "bullet_name to direction "direction"."newline"
      * For example:
      * Soldier1 fired Bullet0 to direction (0.51, 0.86).
      *
      * @param bulletName is the name of fired bullet
      */
     public void printFiringBullet(String bulletName){
-        System.out.println(getName() + " fired " + bulletName + " to " + getDirection() + ".");
+        System.out.println(getName() + " fired " + bulletName + " to direction " + getDirection() + ".");
     }
 
 

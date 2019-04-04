@@ -74,7 +74,7 @@ public class Bullet extends SimulationObject{
 
     /**
      * This function prints in the following format ;
-     * <bullet_name> hit <zombie_name>.<newline>
+     * "bullet_name" hit "zombie_name"."newline"
      * For example:
      * Bullet0 hit Zombie1.
      *
@@ -86,7 +86,7 @@ public class Bullet extends SimulationObject{
 
     /**
      * This function prints in the following format ;
-     * <bullet_name> moved out of bounds.<newline>
+     * "bullet_name" moved out of bounds."newline"
      * For example:
      * Bullet0 moved out of bounds.
      */
@@ -96,7 +96,7 @@ public class Bullet extends SimulationObject{
 
     /**
      * This function prints in the following format ;
-     * <bullet_name> dropped to the ground at <bullet_position>.<newline>
+     * "bullet_name" dropped to the ground at "bullet_position"."newline"
      * For example:
      * Bullet0 dropped to the ground at (12.37, 34.43).
      */
