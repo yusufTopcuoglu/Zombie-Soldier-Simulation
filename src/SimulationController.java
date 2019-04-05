@@ -58,6 +58,8 @@ public class SimulationController {
         double index = 0, tempDistance;
 
         for (int i = 0; i < zombieCount(); i++){
+            if (!getZombie(i).isActive())
+                continue;
             tempDistance = position.distance(getZombie(i).getPosition());
             if (tempDistance < distance){
                 distance = tempDistance;
@@ -75,6 +77,8 @@ public class SimulationController {
         double index = 0, tempDistance;
 
         for (int i = 0; i < soldierCount(); i++){
+            if (!getSoldier(i).isActive())
+                continue;
             tempDistance = position.distance(getSoldier(i).getPosition());
             if (tempDistance < distance){
                 distance = tempDistance;

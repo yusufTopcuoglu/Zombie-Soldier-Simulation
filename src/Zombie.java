@@ -97,7 +97,7 @@ public abstract class Zombie extends SimulationObject {
      * @param soldierName is the name of the killed soldier
      */
     public void printKillingSoldier(String soldierName){
-        System.out.print(getName() + " killed " + soldierName + ".");
+        System.out.println(getName() + " killed " + soldierName + ".");
     }
 
     public boolean canKillSoldier(SimulationController controller){

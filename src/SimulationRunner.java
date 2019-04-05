@@ -13,7 +13,7 @@ public class SimulationRunner {
         
         simulation.addSimulationObject(new RegularSoldier("Soldier1", new Position(0, 0)));
         simulation.addSimulationObject(new RegularZombie("Zombie1", new Position(50, 50)));
-        
+
 
         while (!simulation.isFinished()) {
             simulation.stepAll();

@@ -26,7 +26,7 @@ public class Bullet extends SimulationObject{
                 // go 1 unit further along the direction
                 getPosition().add(getDirection());
 
-                if (controller.isPositionInside(getPosition())){
+                if (!controller.isPositionInside(getPosition())){
                     // moved out of the bounds, stop loop
                     printGoingOut();
                     setActive(false);

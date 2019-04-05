@@ -24,7 +24,11 @@ public class RegularZombie extends Zombie{
         // calculate distance and index of closest zombie
         HashMap<String, Double> closestSoldierValues = controller.getClosestSoldierValues(getPosition());
         double distance = closestSoldierValues.get("distance");
+        double index = closestSoldierValues.get("index");
         if(canDetect(distance)){
+            // zombie detected a soldier
+            // change direction to the soldier and change state to following
+            turnDirectionToPosition(controller.getSoldier((int) index).getPosition());
             setState(ZombieState.FOLLOWING);
         }
     }

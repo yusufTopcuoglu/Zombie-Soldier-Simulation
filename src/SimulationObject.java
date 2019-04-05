@@ -22,7 +22,7 @@ public abstract class SimulationObject {
     }
 
     public void turnDirectionToPosition(Position position){
-        direction = position.getSubtractedPosition(direction);
+        direction = position.getSubtractedPosition(getPosition());
         direction.normalize();
     }
 

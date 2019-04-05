@@ -11,7 +11,7 @@ public class Sniper extends Soldier{
 
     @Override
     public void createBullet(SimulationController controller) {
-        Bullet bullet = Bullet.factorySniperBullet(getPosition(), getDirection());
+        Bullet bullet = Bullet.factorySniperBullet(getPosition().clone(), getDirection().clone());
         controller.addBullet(bullet);
         printFiringBullet(bullet.getName());
     }

@@ -14,7 +14,7 @@ public class Commando extends Soldier {
 
     @Override
     public void createBullet(SimulationController controller) {
-        Bullet bullet = Bullet.factoryCommandoBullet(getPosition(), getDirection());
+        Bullet bullet = Bullet.factoryCommandoBullet(getPosition().clone(), getDirection().clone());
         controller.addBullet(bullet);
         printFiringBullet(bullet.getName());
     }
@@ -89,7 +89,7 @@ public class Commando extends Soldier {
             turnDirectionToPosition(controller.getZombie((int) index).getPosition());
         } else {
             // soldier can not shoot to that distance
-            setPosition(Position.generateRandomDirection(true));
+            setDirection(Position.generateRandomDirection(true));
             setState(SoldierState.SEARCHING);
         }
     }
