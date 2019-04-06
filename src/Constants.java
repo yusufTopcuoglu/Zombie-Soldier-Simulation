@@ -47,12 +47,4 @@ class Constants {
     static final double COMMANDO_BULLET_SPEED = 40.0;
     static final double SNIPER_BULLET_SPEED = 100.0;
 
-
-
-
-
-
-
-
-
 }

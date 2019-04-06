@@ -41,6 +41,8 @@ public class RegularSoldier extends Soldier {
     }
 
     /**
+     * Handles one simulation step of the regular soldier in searching state
+     *
      * This function behaves like this ;
      * – Calculate the next position of the soldier
      * – If the position is out of bounds, change direction to random value
