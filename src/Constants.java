@@ -5,6 +5,11 @@
 class Constants {
 
     // To make sure Constants will not be instantiated
+
+    /**
+     * Empty private constructor to make sure class
+     * is not instantiated
+     */
     private Constants(){}
 
     // REGULAR SOLDIER CONSTANTS

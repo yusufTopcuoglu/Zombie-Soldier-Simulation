@@ -1,17 +1,40 @@
 import java.util.HashMap;
 
 /**
+ * A type of soldier. It has no additional attributes.
+ * Only behavior is different.
  *
+ * Aiming state is an illegal state for the commando.
+ * The bullets that this class creates are the commando bullets.
  *
+ * The speed, shooting range, and collision range are specific
+ * and values are present in Constants.java
+ *
+ * @see SimulationObject
+ * @see Soldier
+ * @see Constants
  */
 public class Commando extends Soldier {
 
+    /**
+     * The only constructor of this class. Calls the super class constructor with
+     * given name, given position, commando speed,
+     * commando collision range, commando shooting range.
+     *
+     * @param name is the name of the commando.
+     * @param position is the position of the position.
+     */
     public Commando(String name, Position position) { // DO NOT CHANGE PARAMETERS
-        super(name, position, Constants.COMMANDO_SPEED, SoldierType.COMMANDO,
-                Constants.COMMANDO_COLLISION_RANGE, Constants.COMMANDO_SHOOTING_RANGE);
+        super(name, position, Constants.COMMANDO_SPEED, Constants.COMMANDO_COLLISION_RANGE,
+                Constants.COMMANDO_SHOOTING_RANGE);
 
     }
 
+    /**
+     * Creates a commando bullet with the same position and direction of the commando.
+     *
+     * @param controller is the SimulationController object that simulation plays in
+     */
     @Override
     public void createBullet(SimulationController controller) {
         Bullet bullet = Bullet.factoryCommandoBullet(getPosition().clone(), getDirection().clone());
@@ -20,7 +43,9 @@ public class Commando extends Soldier {
     }
 
     /**
-     * This function behaves like this ;
+     * Handles the searching state of the commando
+     *
+     * The behaviour is like this ;
      *
      * – Calculate the euclidean distance to the closest zombie.
      * – If the distance is shorter than or equal to the shooting range of the soldier; change soldier
@@ -66,7 +91,8 @@ public class Commando extends Soldier {
     }
 
     /**
-     * Throws illegal statte exception since commando have no aiming state
+     * Throws illegal state exception since commando have no aiming state
+     *
      * @param controller is the SimulationController object that the simulation plays in
      */
     @Override
@@ -75,6 +101,17 @@ public class Commando extends Soldier {
         throw new IllegalStateException();
     }
 
+    /**
+     * Handles the shooting state of the commando
+     *
+     * The behaviour is like this :
+     * – Create a bullet. As mentioned before, bullet’s position and direction should be same as soldier’s
+     * – Calculate the euclidean distance to the closest zombie.
+     * – If the distance is shorter than or equal to the shooting range of the soldier, change soldier
+     * direction to zombie.
+     * – If not, randomly change soldier direction and change state to SEARCHING.
+     * @param controller is the SimulationController object that simulation plays in
+     */
     @Override
     public void handleShooting(SimulationController controller) {
         createBullet(controller);
@@ -89,7 +126,7 @@ public class Commando extends Soldier {
             turnDirectionToPosition(controller.getZombie((int) index).getPosition());
         } else {
             // soldier can not shoot to that distance
-            setDirection(Position.generateRandomDirection(true));
+            setDirection(Position.generateRandomDirection());
             setState(SoldierState.SEARCHING);
         }
     }

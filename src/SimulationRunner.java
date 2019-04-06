@@ -18,7 +18,7 @@ public class SimulationRunner {
         while (!simulation.isFinished()) {
             simulation.stepAll();
             try {
-                Thread.sleep(1000);
+                Thread.sleep(10);
             } catch (InterruptedException ex) {
                 Logger.getLogger(SimulationRunner.class.getName()).log(Level.SEVERE, null, ex);
             }

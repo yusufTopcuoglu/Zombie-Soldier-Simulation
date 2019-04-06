@@ -1,5 +1,5 @@
 /**
- *
+ * Represents the soldier types
  *
  */
 public enum SoldierType {

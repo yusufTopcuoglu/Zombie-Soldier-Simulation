@@ -2,7 +2,8 @@
 import java.util.Random;
 
 /**
- *
+ * Represents a position in 2-D gird with
+ * double x and y coordinates.
  *
  */
 public class Position {
@@ -18,11 +19,11 @@ public class Position {
         this.calculateLength();
     }
 
-    public double getX() {
+    double getX() {
         return x;
     }
 
-    public double getY() {
+    double getY() {
         return y;
     }
 
@@ -30,29 +31,22 @@ public class Position {
         return Math.sqrt(Math.pow(this.x-other.getX(), 2)+Math.pow(this.y-other.getY(), 2));
     }
     
-    public void add(Position other) {
+    void add(Position other) {
         this.x += other.x;
         this.y += other.y;
         
         this.calculateLength();
     }
 
-    public Position getSummedPosition(Position other){
+    Position getSummedPosition(Position other){
         return new Position(this.x + other.x, this.y + other.y);
     }
 
-    public Position getSubtractedPosition(Position other){
+    Position getSubtractedPosition(Position other){
         return new Position(this.x - other.x, this.y - other.y);
     }
 
-    public void mult(double constant) {
-        this.x *= constant;
-        this.y *= constant;
-        
-        this.calculateLength();
-    }
-
-    public Position getMultipliedPosition(double constant){
+    Position getMultipliedPosition(double constant){
         return new Position(this.x * constant, this.y * constant);
     }
 
@@ -60,27 +54,26 @@ public class Position {
         this.length = Math.sqrt(Math.pow(x, 2.0)+Math.pow(y, 2.0));
     }
     
-    public void normalize() {
+    void normalize() {
         this.x /= this.length;
         this.y /= this.length;
         
         this.length = 1.0;
     }
     
-    public static Position generateRandomDirection(boolean normalize) {
+    static Position generateRandomDirection() {
         Random random = new Random();
         double x = -1+random.nextDouble()*2;
         double y = -1+random.nextDouble()*2;
         
         Position result = new Position(x, y);
-        if (normalize)
-            result.normalize();
+        result.normalize();
         return result;
     }
     
     @Override
     protected Position clone() {
-        return new Position(x, y); 
+        return new Position(x, y);
     }
 
     @Override
@@ -98,10 +91,7 @@ public class Position {
         if (this.x != other.x) {
             return false;
         }
-        if (this.y != other.y) {
-            return false;
-        }
-        return true;
+        return this.y == other.y;
     }
 
     @Override
