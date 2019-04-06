@@ -201,13 +201,6 @@ public abstract class Soldier extends SimulationObject {
 
     }
 
-//    'StringBuilder stringBuilder' can be replaced with 'String' less... (Ctrl+F1)
-//    Inspection info: Reports any usages of StringBuffer, StringBuilder or StringJoiner
-//    which can be replaced with a single java.lang.String concatenation.
-//    Using a String concatenation makes the code shorter and simpler.
-//    This inspection only reports when the resulting concatenation is at least
-//    as efficient or more efficient than the original code.
-
     /**
      * This function prints in the following format ;
      * "soldier_name" changed state to "state_name"."newline"
