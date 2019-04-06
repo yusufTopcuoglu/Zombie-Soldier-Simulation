@@ -85,7 +85,7 @@ public abstract class Zombie extends SimulationObject {
      * detection range.
      *
      * @param distance is tje double value that we check if the zombie can detect
-     * @return <tt>true</tt> if the detection range of the zombie is bigger then or equal to the distane
+     * @return <tt>true</tt> if the detection range of the zombie is bigger then or equal to the distance
      */
     boolean canDetect(double distance){
         return getDetectionRange() >= distance;

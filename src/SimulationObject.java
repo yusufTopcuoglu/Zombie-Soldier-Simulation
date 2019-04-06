@@ -138,7 +138,7 @@ public abstract class SimulationObject {
     }
 
     /**
-     * Sets the positon to a given position
+     * Sets the position to a given position
      *
      * @param position is position to set
      */
