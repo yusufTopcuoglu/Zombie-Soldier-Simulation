@@ -6,7 +6,7 @@ import java.util.Random;
  * double x and y coordinates.
  *
  */
-public class Position {
+public class Position implements Cloneable{
     private double x;
     private double y;
     
@@ -72,7 +72,12 @@ public class Position {
     }
     
     @Override
-    protected Position clone() {
+    protected final Position clone() {
+        try {
+            return (Position) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
         return new Position(x, y);
     }
 

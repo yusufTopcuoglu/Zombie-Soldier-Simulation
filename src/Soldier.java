@@ -76,17 +76,6 @@ public abstract class Soldier extends SimulationObject {
     }
 
     /**
-     * Calls the removeSoldier method of the given SimulationController object with itself as a parameter
-     * May throw NullPointerException if the controller is null
-     *
-     * @param controller is the SimulationController object that we call its removeSoldier method
-     */
-    @Override
-    public void removeItself(SimulationController controller){
-        controller.removeSoldier(this);
-    }
-
-    /**
      * It calls the same function of the super class and prints
      * the changes.
      * @param position is the position that object will turn

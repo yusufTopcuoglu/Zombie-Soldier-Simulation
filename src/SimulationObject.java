@@ -110,14 +110,6 @@ public abstract class SimulationObject {
      */
     public abstract void addItself(SimulationController controller);
 
-    /**
-     * This is an abstract function and should be implemented in sub classes.
-     * Handles the remove operation of the object from the simulation
-     *
-     * @param controller is the SimulationController object that simulation plays in.
-     *
-     */
-    public abstract void removeItself(SimulationController controller);
 
     /// BELOWS ARE GETTER AND SETTER ///
 

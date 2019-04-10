@@ -102,16 +102,6 @@ public abstract class Zombie extends SimulationObject {
     }
 
     /**
-     * Calls the removeZombie method of the given SimulationController object with itself as a parameter
-     * May throw NullPointerException if the controller is null
-     * @param controller is the SimulationController object that we call its removeZombie method
-     */
-    @Override
-    public void removeItself(SimulationController controller){
-        controller.removeZombie(this);
-    }
-
-    /**
      * Prints in the following format ;
      * "zombie_name" changed state to "state_name"."newline"
      * For example:

@@ -205,15 +205,6 @@ public class SimulationController {
     }
 
     /**
-     * This function calls the removeItself method of the given Simulation object with itself as a parameter.
-     * May throw NullPointerException if the obj is null
-     * @param obj is the SimulationObject object that we want to remove
-     */
-    public void removeSimulationObject(SimulationObject obj) {
-        obj.removeItself(this);
-    }
-
-    /**
      * This function removes the given soldier from the soldiers ArrayList
      * May throw NullPointerException if the soldiers is null
      * @param soldier is the Soldier object that we remove from the soldiers ArrayList
@@ -229,15 +220,6 @@ public class SimulationController {
      */
     void removeZombie(Zombie zombie){
         zombies.remove(zombie);
-    }
-
-    /**
-     * This function removes the given bullet from the bullets ArrayList
-     * May throw NullPointerException if the bullets is null
-     * @param bullet is the Bullet object that we remove from the bullets ArrayList
-     */
-    void removeBullet(Bullet bullet){
-        bullets.remove(bullet);
     }
 
     /**

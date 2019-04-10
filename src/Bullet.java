@@ -93,16 +93,6 @@ public class Bullet extends SimulationObject{
     }
 
     /**
-     * This function calls the removeBullet method of the given SimulationController object with itself as a parameter
-     * May throw NullPointerException if the controller is null
-     * @param controller is the SimulationController object that we call its removeBullet method
-     */
-    @Override
-    public void removeItself(SimulationController controller) {
-        controller.removeBullet(this);
-    }
-
-    /**
      * Calls Bullet's constructor with given position, given direction,
      * and commando bullet speed.
      *
